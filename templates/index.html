@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block body %}
+
+      {% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+  <div class="card">
+  <h5 class="card-header">Información del Empleado</h5>
+  <div class="card-body">
+    <form action="{{url_for('agregar')}}" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre" id="validationDefault01" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+          </div>
+          <div class="input-group mb-3">
+  <span class="input-group-text">$</span>
+  <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Ventas"name="ventas">
+  <span class="input-group-text">.00</span>
+</div>
+          <button class="btn btn-outline-primary btn-block">
+            AÑADIR REGISTRO 
+          </button>
+        </form>
+  </div>
+</div>
+    </div>
+<br>
+<br>
+<div class="container">
+      <table class="table table-dark table-striped table-hover table-bordered table-sm">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>nombre</td>
+            <td>apellido</td>
+            <td>ventas</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for empleado in empleados %}
+          <tr>
+            <td>{{empleado.0}}</td>
+            <td>{{empleado.1}}</td>
+            <td>{{empleado.2}}</td>
+            <td>{{empleado.3}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+<br>
+<br>
+
+
+
+{% endblock %}
